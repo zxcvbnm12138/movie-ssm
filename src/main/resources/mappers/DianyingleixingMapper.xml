@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.DianyingleixingMapper">
+  <resultMap id="BaseResultMap" type="com.itheima.entity.Dianyingleixing">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="dianyingleixing" jdbcType="VARCHAR" property="dianyingleixing" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, addtime, dianyingleixing
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dianyingleixing
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dianyingleixing
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.itheima.entity.Dianyingleixing">
+    insert into dianyingleixing (id, addtime, dianyingleixing
+      )
+    values (#{id,jdbcType=BIGINT}, #{addtime,jdbcType=TIMESTAMP}, #{dianyingleixing,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itheima.entity.Dianyingleixing">
+    insert into dianyingleixing
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="dianyingleixing != null">
+        dianyingleixing,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dianyingleixing != null">
+        #{dianyingleixing,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itheima.entity.Dianyingleixing">
+    update dianyingleixing
+    <set>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dianyingleixing != null">
+        dianyingleixing = #{dianyingleixing,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itheima.entity.Dianyingleixing">
+    update dianyingleixing
+    set addtime = #{addtime,jdbcType=TIMESTAMP},
+      dianyingleixing = #{dianyingleixing,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findAll" resultType="Dianyingleixing" parameterType="java.lang.String">
+    Select * from dianyingleixing
+    <if test="value != ''">
+      where dianyingleixing = #{value}
+    </if>
+    ORDER BY id
+    <if test="sort != 'ASC'">
+      DESC
+    </if>
+  </select>
+  <select id="mtfindAll" resultType="Dianyingleixing">
+    select * from dianyingleixing
+  </select>
+</mapper>

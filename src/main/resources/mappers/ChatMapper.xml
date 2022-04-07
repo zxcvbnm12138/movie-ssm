@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.ChatMapper">
+  <resultMap id="BaseResultMap" type="com.itheima.entity.Chat">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="adminid" jdbcType="BIGINT" property="adminid" />
+    <result column="ask" jdbcType="VARCHAR" property="ask" />
+    <result column="reply" jdbcType="VARCHAR" property="reply" />
+    <result column="isreply" jdbcType="INTEGER" property="isreply" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, addtime, userid, adminid, ask, reply, isreply
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from chat
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from chat
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.itheima.entity.Chat">
+    insert into chat (id, addtime, userid,
+      adminid, ask, reply,
+      isreply)
+    values (#{id,jdbcType=BIGINT}, #{addtime,jdbcType=TIMESTAMP}, #{userid,jdbcType=BIGINT},
+      #{adminid,jdbcType=BIGINT}, #{ask,jdbcType=VARCHAR}, #{reply,jdbcType=VARCHAR},
+      #{isreply,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itheima.entity.Chat">
+    insert into chat
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="adminid != null">
+        adminid,
+      </if>
+      <if test="ask != null">
+        ask,
+      </if>
+      <if test="reply != null">
+        reply,
+      </if>
+      <if test="isreply != null">
+        isreply,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="adminid != null">
+        #{adminid,jdbcType=BIGINT},
+      </if>
+      <if test="ask != null">
+        #{ask,jdbcType=VARCHAR},
+      </if>
+      <if test="reply != null">
+        #{reply,jdbcType=VARCHAR},
+      </if>
+      <if test="isreply != null">
+        #{isreply,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itheima.entity.Chat">
+    update chat
+    <set>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="adminid != null">
+        adminid = #{adminid,jdbcType=BIGINT},
+      </if>
+      <if test="ask != null">
+        ask = #{ask,jdbcType=VARCHAR},
+      </if>
+      <if test="reply != null">
+        reply = #{reply,jdbcType=VARCHAR},
+      </if>
+      <if test="isreply != null">
+        isreply = #{isreply,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itheima.entity.Chat">
+    update chat
+    set addtime = #{addtime,jdbcType=TIMESTAMP},
+      userid = #{userid,jdbcType=BIGINT},
+      adminid = #{adminid,jdbcType=BIGINT},
+      ask = #{ask,jdbcType=VARCHAR},
+      reply = #{reply,jdbcType=VARCHAR},
+      isreply = #{isreply,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findAll" resultType="Chat">
+    select * from chat where isreply=1
+  </select>
+
+  <update id="updateusermessage" parameterType="com.itheima.entity.Chat">
+    update chat
+    <set>
+        isreply = 0,
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <insert id="insertadminms" parameterType="com.itheima.entity.Chat">
+    insert into chat (addtime, userid,
+      adminid, reply)
+    values (#{addtime,jdbcType=TIMESTAMP}, #{userid,jdbcType=BIGINT},
+    1, #{reply,jdbcType=VARCHAR})
+  </insert>
+</mapper>

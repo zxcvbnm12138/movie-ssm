@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.OrdersMapper">
+  <resultMap id="BaseResultMap" type="com.itheima.entity.Orders">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="orderid" jdbcType="VARCHAR" property="orderid" />
+    <result column="tablename" jdbcType="VARCHAR" property="tablename" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="goodid" jdbcType="BIGINT" property="goodid" />
+    <result column="goodname" jdbcType="VARCHAR" property="goodname" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
+    <result column="buynumber" jdbcType="INTEGER" property="buynumber" />
+    <result column="price" jdbcType="REAL" property="price" />
+    <result column="discountprice" jdbcType="REAL" property="discountprice" />
+    <result column="total" jdbcType="REAL" property="total" />
+    <result column="discounttotal" jdbcType="REAL" property="discounttotal" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="consignee" jdbcType="VARCHAR" property="consignee" />
+    <result column="logistics" jdbcType="VARCHAR" property="logistics" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, addtime, orderid, tablename, userid, goodid, goodname, picture, buynumber, price, 
+    discountprice, total, discounttotal, type, status, address, tel, consignee, logistics
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from orders
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.itheima.entity.Orders">
+    insert into orders (id, addtime, orderid, 
+      tablename, userid, goodid, 
+      goodname, picture, buynumber, 
+      price, discountprice, total, 
+      discounttotal, type, status, 
+      address, tel, consignee, 
+      logistics)
+    values (#{id,jdbcType=BIGINT}, #{addtime,jdbcType=TIMESTAMP}, #{orderid,jdbcType=VARCHAR}, 
+      #{tablename,jdbcType=VARCHAR}, #{userid,jdbcType=BIGINT}, #{goodid,jdbcType=BIGINT}, 
+      #{goodname,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{buynumber,jdbcType=INTEGER}, 
+      #{price,jdbcType=REAL}, #{discountprice,jdbcType=REAL}, #{total,jdbcType=REAL}, 
+      #{discounttotal,jdbcType=REAL}, #{type,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, 
+      #{logistics,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itheima.entity.Orders">
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="orderid != null">
+        orderid,
+      </if>
+      <if test="tablename != null">
+        tablename,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="goodid != null">
+        goodid,
+      </if>
+      <if test="goodname != null">
+        goodname,
+      </if>
+      <if test="picture != null">
+        picture,
+      </if>
+      <if test="buynumber != null">
+        buynumber,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="discountprice != null">
+        discountprice,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="discounttotal != null">
+        discounttotal,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="consignee != null">
+        consignee,
+      </if>
+      <if test="logistics != null">
+        logistics,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="tablename != null">
+        #{tablename,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="goodid != null">
+        #{goodid,jdbcType=BIGINT},
+      </if>
+      <if test="goodname != null">
+        #{goodname,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="buynumber != null">
+        #{buynumber,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="discountprice != null">
+        #{discountprice,jdbcType=REAL},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=REAL},
+      </if>
+      <if test="discounttotal != null">
+        #{discounttotal,jdbcType=REAL},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null">
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="logistics != null">
+        #{logistics,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itheima.entity.Orders">
+    update orders
+    <set>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderid != null">
+        orderid = #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="tablename != null">
+        tablename = #{tablename,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="goodid != null">
+        goodid = #{goodid,jdbcType=BIGINT},
+      </if>
+      <if test="goodname != null">
+        goodname = #{goodname,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="buynumber != null">
+        buynumber = #{buynumber,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="discountprice != null">
+        discountprice = #{discountprice,jdbcType=REAL},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=REAL},
+      </if>
+      <if test="discounttotal != null">
+        discounttotal = #{discounttotal,jdbcType=REAL},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null">
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="logistics != null">
+        logistics = #{logistics,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itheima.entity.Orders">
+    update orders
+    set addtime = #{addtime,jdbcType=TIMESTAMP},
+      orderid = #{orderid,jdbcType=VARCHAR},
+      tablename = #{tablename,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=BIGINT},
+      goodid = #{goodid,jdbcType=BIGINT},
+      goodname = #{goodname,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      buynumber = #{buynumber,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL},
+      discountprice = #{discountprice,jdbcType=REAL},
+      total = #{total,jdbcType=REAL},
+      discounttotal = #{discounttotal,jdbcType=REAL},
+      type = #{type,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      logistics = #{logistics,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findywc" resultType="Orders" parameterType="java.lang.String">
+    Select * from orders
+    <if test="value != ''">
+      RIGHT JOIN yonghu ON userid=yonghu.id
+    </if>
+    WHERE
+    <if test="value != ''">
+      shouji = #{value} AND
+    </if>
+    status ='已完成'
+    ORDER BY orders.id
+    <if test="sort != 'ASC'">
+      DESC
+    </if>
+  </select>
+
+  <select id="findwwc" resultType="Orders" parameterType="java.lang.String">
+    <if test="value != ''">
+      SELECT orderid,goodname,buynumber,price,total,type,status, address FROM orders RIGHT JOIN yonghu ON userid=yonghu.id WHERE status='已支付' AND shouji =#{value} UNION
+      SELECT orderid,goodname,buynumber,price,total,type,status, address FROM orders RIGHT JOIN yonghu ON userid=yonghu.id WHERE status='已退款' AND shouji =#{value} UNION
+      SELECT orderid,goodname,buynumber,price,total,type,status, address FROM orders RIGHT JOIN yonghu ON userid=yonghu.id WHERE status='未支付' AND shouji =#{value}
+    </if>
+    <if test="value == ''">
+      select * from orders where status='已支付'OR status='已退款'OR status='未支付'ORDER BY id
+      <if test="sort != 'ASC'">
+        DESC
+      </if>
+    </if>
+
+  </select>
+
+  <select id="findyqx" resultType="Orders" parameterType="java.lang.String">
+    Select * from orders
+    <if test="value != ''">
+      RIGHT JOIN yonghu ON userid=yonghu.id
+    </if>
+    WHERE
+    <if test="value != ''">
+      shouji = #{value} AND
+    </if>
+    status='已取消'
+    ORDER BY orders.id
+    <if test="sort != 'ASC'">
+      DESC
+    </if>
+  </select>
+
+  <select id="findtotal" resultType="TotalVo">
+    SELECT goodname,COALESCE(sum(buynumber),0) as buynumber,COALESCE(sum(total),0) as total FROM orders WHERE `status`='已完成' GROUP BY goodname;
+  </select>
+  <select id="findday" resultType="TotalVo">
+    SELECT DATE(addtime) as addtime,goodname,sum(buynumber)as buynumber,sum(total) as total FROM orders WHERE `status`='已完成' GROUP BY DAY(orders.addtime),goodname;
+  </select>
+  <select id="findmonth" resultType="TotalVo">
+   SELECT DATE_FORMAT(addtime,'%Y-%m') as addtime,goodname,sum(buynumber) as buynumber,sum(total) as total FROM orders WHERE `status`='已完成' GROUP BY MONTH(orders.addtime),goodname;
+   </select>
+  <select id="findyear" resultType="TotalVo">
+    SELECT DATE_FORMAT(addtime,'%Y') as addtime,goodname,sum(buynumber) as buynumber,sum(total) as total FROM orders WHERE `status`='已完成' GROUP BY YEAR(orders.addtime),goodname;
+    </select>
+
+
+</mapper>

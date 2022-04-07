@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.ShangpinxinxiMapper">
+  <resultMap id="BaseResultMap" type="com.itheima.entity.Shangpinxinxi">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="shangpinmingcheng" jdbcType="VARCHAR" property="shangpinmingcheng" />
+    <result column="fenlei" jdbcType="VARCHAR" property="fenlei" />
+    <result column="tupian" jdbcType="VARCHAR" property="tupian" />
+    <result column="guige" jdbcType="VARCHAR" property="guige" />
+    <result column="jiage" jdbcType="REAL" property="jiage" />
+    <result column="shangpinxiangqing" jdbcType="VARCHAR" property="shangpinxiangqing" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, addtime, shangpinmingcheng, fenlei, tupian, guige, jiage, shangpinxiangqing
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shangpinxinxi
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from shangpinxinxi
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.itheima.entity.Shangpinxinxi">
+    insert into shangpinxinxi (id, addtime, shangpinmingcheng, 
+      fenlei, tupian, guige, 
+      jiage, shangpinxiangqing)
+    values (#{id,jdbcType=BIGINT}, #{addtime,jdbcType=TIMESTAMP}, #{shangpinmingcheng,jdbcType=VARCHAR}, 
+      #{fenlei,jdbcType=VARCHAR}, #{tupian,jdbcType=VARCHAR}, #{guige,jdbcType=VARCHAR}, 
+      #{jiage,jdbcType=REAL}, #{shangpinxiangqing,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itheima.entity.Shangpinxinxi">
+    insert into shangpinxinxi
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="shangpinmingcheng != null">
+        shangpinmingcheng,
+      </if>
+      <if test="fenlei != null">
+        fenlei,
+      </if>
+      <if test="tupian != null">
+        tupian,
+      </if>
+      <if test="guige != null">
+        guige,
+      </if>
+      <if test="jiage != null">
+        jiage,
+      </if>
+      <if test="shangpinxiangqing != null">
+        shangpinxiangqing,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shangpinmingcheng != null">
+        #{shangpinmingcheng,jdbcType=VARCHAR},
+      </if>
+      <if test="fenlei != null">
+        #{fenlei,jdbcType=VARCHAR},
+      </if>
+      <if test="tupian != null">
+        #{tupian,jdbcType=VARCHAR},
+      </if>
+      <if test="guige != null">
+        #{guige,jdbcType=VARCHAR},
+      </if>
+      <if test="jiage != null">
+        #{jiage,jdbcType=REAL},
+      </if>
+      <if test="shangpinxiangqing != null">
+        #{shangpinxiangqing,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itheima.entity.Shangpinxinxi">
+    update shangpinxinxi
+    <set>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shangpinmingcheng != null">
+        shangpinmingcheng = #{shangpinmingcheng,jdbcType=VARCHAR},
+      </if>
+      <if test="fenlei != null">
+        fenlei = #{fenlei,jdbcType=VARCHAR},
+      </if>
+      <if test="tupian != null">
+        tupian = #{tupian,jdbcType=VARCHAR},
+      </if>
+      <if test="guige != null">
+        guige = #{guige,jdbcType=VARCHAR},
+      </if>
+      <if test="jiage != null">
+        jiage = #{jiage,jdbcType=REAL},
+      </if>
+      <if test="shangpinxiangqing != null">
+        shangpinxiangqing = #{shangpinxiangqing,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itheima.entity.Shangpinxinxi">
+    update shangpinxinxi
+    set addtime = #{addtime,jdbcType=TIMESTAMP},
+      shangpinmingcheng = #{shangpinmingcheng,jdbcType=VARCHAR},
+      fenlei = #{fenlei,jdbcType=VARCHAR},
+      tupian = #{tupian,jdbcType=VARCHAR},
+      guige = #{guige,jdbcType=VARCHAR},
+      jiage = #{jiage,jdbcType=REAL},
+      shangpinxiangqing = #{shangpinxiangqing,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findAll" resultType="Shangpinxinxi" parameterType="java.lang.String">
+    Select * from shangpinxinxi
+    <if test="value != ''">
+      where shangpinmingcheng = #{value}
+    </if>
+    ORDER BY id
+    <if test="sort != 'ASC'">
+      DESC
+    </if>
+  </select>
+</mapper>

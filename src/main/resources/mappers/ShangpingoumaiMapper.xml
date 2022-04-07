@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.ShangpingoumaiMapper">
+  <resultMap id="BaseResultMap" type="com.itheima.entity.Shangpingoumai">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="dingdanbianhao" jdbcType="VARCHAR" property="dingdanbianhao" />
+    <result column="shangpinmingcheng" jdbcType="VARCHAR" property="shangpinmingcheng" />
+    <result column="tupian" jdbcType="VARCHAR" property="tupian" />
+    <result column="guige" jdbcType="VARCHAR" property="guige" />
+    <result column="shuliang" jdbcType="INTEGER" property="shuliang" />
+    <result column="jiage" jdbcType="INTEGER" property="jiage" />
+    <result column="zongjine" jdbcType="INTEGER" property="zongjine" />
+    <result column="xiadanshijian" jdbcType="TIMESTAMP" property="xiadanshijian" />
+    <result column="yonghuming" jdbcType="VARCHAR" property="yonghuming" />
+    <result column="shouji" jdbcType="VARCHAR" property="shouji" />
+    <result column="sfsh" jdbcType="VARCHAR" property="sfsh" />
+    <result column="shhf" jdbcType="VARCHAR" property="shhf" />
+    <result column="ispay" jdbcType="VARCHAR" property="ispay" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, addtime, dingdanbianhao, shangpinmingcheng, tupian, guige, shuliang, jiage, zongjine, 
+    xiadanshijian, yonghuming, shouji, sfsh, shhf, ispay, userid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shangpingoumai
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from shangpingoumai
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.itheima.entity.Shangpingoumai">
+    insert into shangpingoumai (id, addtime, dingdanbianhao, 
+      shangpinmingcheng, tupian, guige, 
+      shuliang, jiage, zongjine, 
+      xiadanshijian, yonghuming, shouji, 
+      sfsh, shhf, ispay, 
+      userid)
+    values (#{id,jdbcType=BIGINT}, #{addtime,jdbcType=TIMESTAMP}, #{dingdanbianhao,jdbcType=VARCHAR}, 
+      #{shangpinmingcheng,jdbcType=VARCHAR}, #{tupian,jdbcType=VARCHAR}, #{guige,jdbcType=VARCHAR}, 
+      #{shuliang,jdbcType=INTEGER}, #{jiage,jdbcType=INTEGER}, #{zongjine,jdbcType=INTEGER}, 
+      #{xiadanshijian,jdbcType=TIMESTAMP}, #{yonghuming,jdbcType=VARCHAR}, #{shouji,jdbcType=VARCHAR}, 
+      #{sfsh,jdbcType=VARCHAR}, #{shhf,jdbcType=VARCHAR}, #{ispay,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itheima.entity.Shangpingoumai">
+    insert into shangpingoumai
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="dingdanbianhao != null">
+        dingdanbianhao,
+      </if>
+      <if test="shangpinmingcheng != null">
+        shangpinmingcheng,
+      </if>
+      <if test="tupian != null">
+        tupian,
+      </if>
+      <if test="guige != null">
+        guige,
+      </if>
+      <if test="shuliang != null">
+        shuliang,
+      </if>
+      <if test="jiage != null">
+        jiage,
+      </if>
+      <if test="zongjine != null">
+        zongjine,
+      </if>
+      <if test="xiadanshijian != null">
+        xiadanshijian,
+      </if>
+      <if test="yonghuming != null">
+        yonghuming,
+      </if>
+      <if test="shouji != null">
+        shouji,
+      </if>
+      <if test="sfsh != null">
+        sfsh,
+      </if>
+      <if test="shhf != null">
+        shhf,
+      </if>
+      <if test="ispay != null">
+        ispay,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dingdanbianhao != null">
+        #{dingdanbianhao,jdbcType=VARCHAR},
+      </if>
+      <if test="shangpinmingcheng != null">
+        #{shangpinmingcheng,jdbcType=VARCHAR},
+      </if>
+      <if test="tupian != null">
+        #{tupian,jdbcType=VARCHAR},
+      </if>
+      <if test="guige != null">
+        #{guige,jdbcType=VARCHAR},
+      </if>
+      <if test="shuliang != null">
+        #{shuliang,jdbcType=INTEGER},
+      </if>
+      <if test="jiage != null">
+        #{jiage,jdbcType=INTEGER},
+      </if>
+      <if test="zongjine != null">
+        #{zongjine,jdbcType=INTEGER},
+      </if>
+      <if test="xiadanshijian != null">
+        #{xiadanshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yonghuming != null">
+        #{yonghuming,jdbcType=VARCHAR},
+      </if>
+      <if test="shouji != null">
+        #{shouji,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsh != null">
+        #{sfsh,jdbcType=VARCHAR},
+      </if>
+      <if test="shhf != null">
+        #{shhf,jdbcType=VARCHAR},
+      </if>
+      <if test="ispay != null">
+        #{ispay,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itheima.entity.Shangpingoumai">
+    update shangpingoumai
+    <set>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dingdanbianhao != null">
+        dingdanbianhao = #{dingdanbianhao,jdbcType=VARCHAR},
+      </if>
+      <if test="shangpinmingcheng != null">
+        shangpinmingcheng = #{shangpinmingcheng,jdbcType=VARCHAR},
+      </if>
+      <if test="tupian != null">
+        tupian = #{tupian,jdbcType=VARCHAR},
+      </if>
+      <if test="guige != null">
+        guige = #{guige,jdbcType=VARCHAR},
+      </if>
+      <if test="shuliang != null">
+        shuliang = #{shuliang,jdbcType=INTEGER},
+      </if>
+      <if test="jiage != null">
+        jiage = #{jiage,jdbcType=INTEGER},
+      </if>
+      <if test="zongjine != null">
+        zongjine = #{zongjine,jdbcType=INTEGER},
+      </if>
+      <if test="xiadanshijian != null">
+        xiadanshijian = #{xiadanshijian,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yonghuming != null">
+        yonghuming = #{yonghuming,jdbcType=VARCHAR},
+      </if>
+      <if test="shouji != null">
+        shouji = #{shouji,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsh != null">
+        sfsh = #{sfsh,jdbcType=VARCHAR},
+      </if>
+      <if test="shhf != null">
+        shhf = #{shhf,jdbcType=VARCHAR},
+      </if>
+      <if test="ispay != null">
+        ispay = #{ispay,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itheima.entity.Shangpingoumai">
+    update shangpingoumai
+    set addtime = #{addtime,jdbcType=TIMESTAMP},
+      dingdanbianhao = #{dingdanbianhao,jdbcType=VARCHAR},
+      shangpinmingcheng = #{shangpinmingcheng,jdbcType=VARCHAR},
+      tupian = #{tupian,jdbcType=VARCHAR},
+      guige = #{guige,jdbcType=VARCHAR},
+      shuliang = #{shuliang,jdbcType=INTEGER},
+      jiage = #{jiage,jdbcType=INTEGER},
+      zongjine = #{zongjine,jdbcType=INTEGER},
+      xiadanshijian = #{xiadanshijian,jdbcType=TIMESTAMP},
+      yonghuming = #{yonghuming,jdbcType=VARCHAR},
+      shouji = #{shouji,jdbcType=VARCHAR},
+      sfsh = #{sfsh,jdbcType=VARCHAR},
+      shhf = #{shhf,jdbcType=VARCHAR},
+      ispay = #{ispay,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findAll" resultType="Shangpingoumai" parameterType="java.lang.String">
+    Select * from shangpingoumai
+    <if test="value != ''">
+      where shouji = #{value}
+    </if>
+    ORDER BY id
+    <if test="sort != 'ASC'">
+      DESC
+    </if>
+  </select>
+</mapper>

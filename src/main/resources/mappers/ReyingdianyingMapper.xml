@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.ReyingdianyingMapper">
+  <resultMap id="BaseResultMap" type="com.itheima.entity.Reyingdianying">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="dianyingmingcheng" jdbcType="VARCHAR" property="dianyingmingcheng" />
+    <result column="dianyingleixing" jdbcType="VARCHAR" property="dianyingleixing" />
+    <result column="haibao" jdbcType="VARCHAR" property="haibao" />
+    <result column="daoyan" jdbcType="VARCHAR" property="daoyan" />
+    <result column="zhuyan" jdbcType="VARCHAR" property="zhuyan" />
+    <result column="zhipiandiqu" jdbcType="VARCHAR" property="zhipiandiqu" />
+    <result column="shangyingriqi" jdbcType="TIMESTAMP" property="shangyingriqi" />
+    <result column="pianzhang" jdbcType="VARCHAR" property="pianzhang" />
+    <result column="dianyingyugao" jdbcType="VARCHAR" property="dianyingyugao" />
+    <result column="dianyingjianjie" jdbcType="VARCHAR" property="dianyingjianjie" />
+    <result column="fangyingting" jdbcType="VARCHAR" property="fangyingting" />
+    <result column="changci" jdbcType="TIMESTAMP" property="changci" />
+    <result column="clicktime" jdbcType="TIMESTAMP" property="clicktime" />
+    <result column="clicknum" jdbcType="INTEGER" property="clicknum" />
+    <result column="price" jdbcType="REAL" property="price" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="selected" jdbcType="VARCHAR" property="selected" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, addtime, dianyingmingcheng, dianyingleixing, haibao, daoyan, zhuyan, zhipiandiqu, 
+    shangyingriqi, pianzhang, dianyingyugao, dianyingjianjie, fangyingting, changci, 
+    clicktime, clicknum, price, number, selected
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from reyingdianying
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from reyingdianying
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.itheima.entity.Reyingdianying">
+    insert into reyingdianying (id, addtime, dianyingmingcheng, 
+      dianyingleixing, haibao, daoyan, 
+      zhuyan, zhipiandiqu, shangyingriqi, 
+      pianzhang, dianyingyugao, dianyingjianjie, 
+      fangyingting, changci, clicktime, 
+      clicknum, price, number, 
+      selected)
+    values (#{id,jdbcType=BIGINT}, #{addtime,jdbcType=TIMESTAMP}, #{dianyingmingcheng,jdbcType=VARCHAR}, 
+      #{dianyingleixing,jdbcType=VARCHAR}, #{haibao,jdbcType=VARCHAR}, #{daoyan,jdbcType=VARCHAR}, 
+      #{zhuyan,jdbcType=VARCHAR}, #{zhipiandiqu,jdbcType=VARCHAR}, #{shangyingriqi,jdbcType=TIMESTAMP}, 
+      #{pianzhang,jdbcType=VARCHAR}, #{dianyingyugao,jdbcType=VARCHAR}, #{dianyingjianjie,jdbcType=VARCHAR}, 
+      #{fangyingting,jdbcType=VARCHAR}, #{changci,jdbcType=TIMESTAMP}, #{clicktime,jdbcType=TIMESTAMP}, 
+      #{clicknum,jdbcType=INTEGER}, #{price,jdbcType=REAL}, #{number,jdbcType=INTEGER}, 
+      #{selected,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itheima.entity.Reyingdianying">
+    insert into reyingdianying
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="dianyingmingcheng != null">
+        dianyingmingcheng,
+      </if>
+      <if test="dianyingleixing != null">
+        dianyingleixing,
+      </if>
+      <if test="haibao != null">
+        haibao,
+      </if>
+      <if test="daoyan != null">
+        daoyan,
+      </if>
+      <if test="zhuyan != null">
+        zhuyan,
+      </if>
+      <if test="zhipiandiqu != null">
+        zhipiandiqu,
+      </if>
+      <if test="shangyingriqi != null">
+        shangyingriqi,
+      </if>
+      <if test="pianzhang != null">
+        pianzhang,
+      </if>
+      <if test="dianyingyugao != null">
+        dianyingyugao,
+      </if>
+      <if test="dianyingjianjie != null">
+        dianyingjianjie,
+      </if>
+      <if test="fangyingting != null">
+        fangyingting,
+      </if>
+      <if test="changci != null">
+        changci,
+      </if>
+      <if test="clicktime != null">
+        clicktime,
+      </if>
+      <if test="clicknum != null">
+        clicknum,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="selected != null">
+        selected,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dianyingmingcheng != null">
+        #{dianyingmingcheng,jdbcType=VARCHAR},
+      </if>
+      <if test="dianyingleixing != null">
+        #{dianyingleixing,jdbcType=VARCHAR},
+      </if>
+      <if test="haibao != null">
+        #{haibao,jdbcType=VARCHAR},
+      </if>
+      <if test="daoyan != null">
+        #{daoyan,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuyan != null">
+        #{zhuyan,jdbcType=VARCHAR},
+      </if>
+      <if test="zhipiandiqu != null">
+        #{zhipiandiqu,jdbcType=VARCHAR},
+      </if>
+      <if test="shangyingriqi != null">
+        #{shangyingriqi,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pianzhang != null">
+        #{pianzhang,jdbcType=VARCHAR},
+      </if>
+      <if test="dianyingyugao != null">
+        #{dianyingyugao,jdbcType=VARCHAR},
+      </if>
+      <if test="dianyingjianjie != null">
+        #{dianyingjianjie,jdbcType=VARCHAR},
+      </if>
+      <if test="fangyingting != null">
+        #{fangyingting,jdbcType=VARCHAR},
+      </if>
+      <if test="changci != null">
+        #{changci,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clicktime != null">
+        #{clicktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clicknum != null">
+        #{clicknum,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="selected != null">
+        #{selected,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itheima.entity.Reyingdianying">
+    update reyingdianying
+    <set>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dianyingmingcheng != null">
+        dianyingmingcheng = #{dianyingmingcheng,jdbcType=VARCHAR},
+      </if>
+      <if test="dianyingleixing != null">
+        dianyingleixing = #{dianyingleixing,jdbcType=VARCHAR},
+      </if>
+      <if test="haibao != null">
+        haibao = #{haibao,jdbcType=VARCHAR},
+      </if>
+      <if test="daoyan != null">
+        daoyan = #{daoyan,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuyan != null">
+        zhuyan = #{zhuyan,jdbcType=VARCHAR},
+      </if>
+      <if test="zhipiandiqu != null">
+        zhipiandiqu = #{zhipiandiqu,jdbcType=VARCHAR},
+      </if>
+      <if test="shangyingriqi != null">
+        shangyingriqi = #{shangyingriqi,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pianzhang != null">
+        pianzhang = #{pianzhang,jdbcType=VARCHAR},
+      </if>
+      <if test="dianyingyugao != null">
+        dianyingyugao = #{dianyingyugao,jdbcType=VARCHAR},
+      </if>
+      <if test="dianyingjianjie != null">
+        dianyingjianjie = #{dianyingjianjie,jdbcType=VARCHAR},
+      </if>
+      <if test="fangyingting != null">
+        fangyingting = #{fangyingting,jdbcType=VARCHAR},
+      </if>
+      <if test="changci != null">
+        changci = #{changci,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clicktime != null">
+        clicktime = #{clicktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clicknum != null">
+        clicknum = #{clicknum,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="selected != null">
+        selected = #{selected,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itheima.entity.Reyingdianying">
+    update reyingdianying
+    set addtime = #{addtime,jdbcType=TIMESTAMP},
+      dianyingmingcheng = #{dianyingmingcheng,jdbcType=VARCHAR},
+      dianyingleixing = #{dianyingleixing,jdbcType=VARCHAR},
+      haibao = #{haibao,jdbcType=VARCHAR},
+      daoyan = #{daoyan,jdbcType=VARCHAR},
+      zhuyan = #{zhuyan,jdbcType=VARCHAR},
+      zhipiandiqu = #{zhipiandiqu,jdbcType=VARCHAR},
+      shangyingriqi = #{shangyingriqi,jdbcType=TIMESTAMP},
+      pianzhang = #{pianzhang,jdbcType=VARCHAR},
+      dianyingyugao = #{dianyingyugao,jdbcType=VARCHAR},
+      dianyingjianjie = #{dianyingjianjie,jdbcType=VARCHAR},
+      fangyingting = #{fangyingting,jdbcType=VARCHAR},
+      changci = #{changci,jdbcType=TIMESTAMP},
+      clicktime = #{clicktime,jdbcType=TIMESTAMP},
+      clicknum = #{clicknum,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL},
+      number = #{number,jdbcType=INTEGER},
+      selected = #{selected,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findAll" resultType="Reyingdianying" parameterType="java.lang.String">
+  Select * from reyingdianying
+    <if test="value != ''">
+      where dianyingmingcheng = #{value}
+    </if>
+  ORDER BY id
+  <if test="sort != 'ASC'">
+    DESC
+  </if>
+</select>
+</mapper>

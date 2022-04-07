@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.FangyingtingMapper">
+  <resultMap id="BaseResultMap" type="com.itheima.entity.Fangyingting">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="fangyingting" jdbcType="VARCHAR" property="fangyingting" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, addtime, fangyingting
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fangyingting
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from fangyingting
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.itheima.entity.Fangyingting">
+    insert into fangyingting (id, addtime, fangyingting
+      )
+    values (#{id,jdbcType=BIGINT}, #{addtime,jdbcType=TIMESTAMP}, #{fangyingting,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itheima.entity.Fangyingting">
+    insert into fangyingting
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="fangyingting != null">
+        fangyingting,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fangyingting != null">
+        #{fangyingting,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itheima.entity.Fangyingting">
+    update fangyingting
+    <set>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fangyingting != null">
+        fangyingting = #{fangyingting,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itheima.entity.Fangyingting">
+    update fangyingting
+    set addtime = #{addtime,jdbcType=TIMESTAMP},
+      fangyingting = #{fangyingting,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findAll" resultType="Fangyingting" parameterType="java.lang.String">
+    Select * from fangyingting
+    <if test="value != ''">
+      where fangyingting = #{value}
+    </if>
+    ORDER BY id
+    <if test="sort != 'ASC'">
+      DESC
+    </if>
+  </select>
+  <select id="fytfindAll" resultType="Fangyingting">
+    select * from fangyingting
+  </select>
+</mapper>

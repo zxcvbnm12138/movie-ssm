@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.YonghuMapper">
+  <resultMap id="BaseResultMap" type="com.itheima.entity.Yonghu">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="yonghuming" jdbcType="VARCHAR" property="yonghuming" />
+    <result column="mima" jdbcType="VARCHAR" property="mima" />
+    <result column="xingming" jdbcType="VARCHAR" property="xingming" />
+    <result column="touxiang" jdbcType="VARCHAR" property="touxiang" />
+    <result column="xingbie" jdbcType="VARCHAR" property="xingbie" />
+    <result column="shouji" jdbcType="VARCHAR" property="shouji" />
+    <result column="money" jdbcType="REAL" property="money" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, addtime, yonghuming, mima, xingming, touxiang, xingbie, shouji, money
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from yonghu
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from yonghu
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="com.itheima.entity.Yonghu">
+    insert into yonghu (id, addtime, yonghuming, 
+      mima, xingming, touxiang, 
+      xingbie, shouji, money
+      )
+    values (#{id,jdbcType=BIGINT}, #{addtime,jdbcType=TIMESTAMP}, #{yonghuming,jdbcType=VARCHAR}, 
+      #{mima,jdbcType=VARCHAR}, #{xingming,jdbcType=VARCHAR}, #{touxiang,jdbcType=VARCHAR}, 
+      #{xingbie,jdbcType=VARCHAR}, #{shouji,jdbcType=VARCHAR}, #{money,jdbcType=REAL}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.itheima.entity.Yonghu">
+    insert into yonghu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="yonghuming != null">
+        yonghuming,
+      </if>
+      <if test="mima != null">
+        mima,
+      </if>
+      <if test="xingming != null">
+        xingming,
+      </if>
+      <if test="touxiang != null">
+        touxiang,
+      </if>
+      <if test="xingbie != null">
+        xingbie,
+      </if>
+      <if test="shouji != null">
+        shouji,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yonghuming != null">
+        #{yonghuming,jdbcType=VARCHAR},
+      </if>
+      <if test="mima != null">
+        #{mima,jdbcType=VARCHAR},
+      </if>
+      <if test="xingming != null">
+        #{xingming,jdbcType=VARCHAR},
+      </if>
+      <if test="touxiang != null">
+        #{touxiang,jdbcType=VARCHAR},
+      </if>
+      <if test="xingbie != null">
+        #{xingbie,jdbcType=VARCHAR},
+      </if>
+      <if test="shouji != null">
+        #{shouji,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.itheima.entity.Yonghu">
+    update yonghu
+    <set>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yonghuming != null">
+        yonghuming = #{yonghuming,jdbcType=VARCHAR},
+      </if>
+      <if test="mima != null">
+        mima = #{mima,jdbcType=VARCHAR},
+      </if>
+      <if test="xingming != null">
+        xingming = #{xingming,jdbcType=VARCHAR},
+      </if>
+      <if test="touxiang != null">
+        touxiang = #{touxiang,jdbcType=VARCHAR},
+      </if>
+      <if test="xingbie != null">
+        xingbie = #{xingbie,jdbcType=VARCHAR},
+      </if>
+      <if test="shouji != null">
+        shouji = #{shouji,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.itheima.entity.Yonghu">
+    update yonghu
+    set addtime = #{addtime,jdbcType=TIMESTAMP},
+      yonghuming = #{yonghuming,jdbcType=VARCHAR},
+      mima = #{mima,jdbcType=VARCHAR},
+      xingming = #{xingming,jdbcType=VARCHAR},
+      touxiang = #{touxiang,jdbcType=VARCHAR},
+      xingbie = #{xingbie,jdbcType=VARCHAR},
+      shouji = #{shouji,jdbcType=VARCHAR},
+      money = #{money,jdbcType=REAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findAll" resultType="Yonghu" parameterType="java.lang.String">
+    Select * from yonghu
+    <if test="value != ''">
+      where yonghuming = #{value}
+    </if>
+    ORDER BY id
+    <if test="sort != 'ASC'">
+      DESC
+    </if>
+  </select>
+</mapper>
