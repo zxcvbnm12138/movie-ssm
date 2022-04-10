@@ -132,8 +132,8 @@ public class OrdersController {
     }
     @ResponseBody
     @RequestMapping(value = "/findYear",method = RequestMethod.GET)
-    public Map getYear (){
-        List<Orders> yearList = ordersService.findYear();
+    public Map getYear (@RequestParam(value = "year",defaultValue = "2022")String yeardata){
+        List<Orders> yearList = ordersService.findYear(yeardata);
         Map map = new HashMap();
         map.put("list",yearList);
         return map;

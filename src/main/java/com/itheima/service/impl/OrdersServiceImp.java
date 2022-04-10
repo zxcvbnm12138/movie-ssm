@@ -73,8 +73,8 @@ public class OrdersServiceImp implements OrdersService {
     }
 
     @Override
-    public List<Orders> findYear() {
-        List<Orders> yearList = ordersMapper.findyear();
+    public List<Orders> findYear(String yeardata) {
+        List<Orders> yearList = ordersMapper.findyear(yeardata);
         return yearList;
     }
 }

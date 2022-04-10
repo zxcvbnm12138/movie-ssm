@@ -28,6 +28,6 @@ public interface OrdersMapper {
     List<Orders> findtotal();
     List<Orders> findday();
     List<Orders> findmonth();
-    List<Orders> findyear();
+    List<Orders> findyear(String yeardata);
 
 }

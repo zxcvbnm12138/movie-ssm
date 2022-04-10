@@ -23,11 +23,11 @@
     <result column="logistics" jdbcType="VARCHAR" property="logistics" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, addtime, orderid, tablename, userid, goodid, goodname, picture, buynumber, price, 
+    id, addtime, orderid, tablename, userid, goodid, goodname, picture, buynumber, price,
     discountprice, total, discounttotal, type, status, address, tel, consignee, logistics
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from orders
     where id = #{id,jdbcType=BIGINT}
@@ -37,19 +37,19 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.itheima.entity.Orders">
-    insert into orders (id, addtime, orderid, 
-      tablename, userid, goodid, 
-      goodname, picture, buynumber, 
-      price, discountprice, total, 
-      discounttotal, type, status, 
-      address, tel, consignee, 
+    insert into orders (id, addtime, orderid,
+      tablename, userid, goodid,
+      goodname, picture, buynumber,
+      price, discountprice, total,
+      discounttotal, type, status,
+      address, tel, consignee,
       logistics)
-    values (#{id,jdbcType=BIGINT}, #{addtime,jdbcType=TIMESTAMP}, #{orderid,jdbcType=VARCHAR}, 
-      #{tablename,jdbcType=VARCHAR}, #{userid,jdbcType=BIGINT}, #{goodid,jdbcType=BIGINT}, 
-      #{goodname,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{buynumber,jdbcType=INTEGER}, 
-      #{price,jdbcType=REAL}, #{discountprice,jdbcType=REAL}, #{total,jdbcType=REAL}, 
-      #{discounttotal,jdbcType=REAL}, #{type,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{addtime,jdbcType=TIMESTAMP}, #{orderid,jdbcType=VARCHAR},
+      #{tablename,jdbcType=VARCHAR}, #{userid,jdbcType=BIGINT}, #{goodid,jdbcType=BIGINT},
+      #{goodname,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{buynumber,jdbcType=INTEGER},
+      #{price,jdbcType=REAL}, #{discountprice,jdbcType=REAL}, #{total,jdbcType=REAL},
+      #{discounttotal,jdbcType=REAL}, #{type,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR},
+      #{address,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR},
       #{logistics,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.itheima.entity.Orders">
@@ -312,8 +312,8 @@
   <select id="findmonth" resultType="TotalVo">
    SELECT DATE_FORMAT(addtime,'%Y-%m') as addtime,sum(buynumber) as buynumber,sum(total) as total FROM orders WHERE `status`='已完成' GROUP BY MONTH(orders.addtime);
    </select>
-  <select id="findyear" resultType="TotalVo">
-    SELECT DATE_FORMAT(addtime,'%Y') as addtime,sum(buynumber) as buynumber,sum(total) as total FROM orders WHERE `status`='已完成' GROUP BY YEAR(orders.addtime);
+  <select id="findyear" resultType="TotalVo" parameterType="java.lang.String">
+    SELECT * from (SELECT DATE_FORMAT(addtime,'%Y') as addtime,sum(buynumber) as buynumber,sum(total) as total FROM orders WHERE `status`='已完成' GROUP BY YEAR(orders.addtime)) as a WHERE a.addtime=#{yeardata};
     </select>
 
 

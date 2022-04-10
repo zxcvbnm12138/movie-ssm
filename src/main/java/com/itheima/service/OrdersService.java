@@ -21,5 +21,5 @@ public interface OrdersService {
     List<Orders> findTotal();
     List<Orders> findDay();
     List<Orders> findMonth();
-    List<Orders> findYear();
+    List<Orders> findYear(String yeardata);
 }
